@@ -1,5 +1,5 @@
-import {Images, imgs, winImgs, loseImgs, startImg} from './imgs.js';
-import *as sound from './sound.js';
+import { Images, imgs, winImgs, loseImgs, startImg } from './imgs.js';
+import * as sound from './sound.js';
 
 const $squareContainer = document.querySelector('.square__container');
 const $startButton = document.querySelector('.start__button');
@@ -16,7 +16,7 @@ const GAME = {
   START: '시작',
   RESTART: '재시작',
   WIN: 'win',
-  LOSE: 'lose'
+  LOSE: 'lose',
 };
 
 (function makeImgSrcList() {
@@ -40,10 +40,10 @@ function updateAnswerCount(count) {
 }
 
 function flipImg(square) {
-  square.classList.toggle('flip');
+  square.classList.toggle('flip img-display');
 }
 
-function handleCheckAnswer(ev) {
+function handleCheckAnswer() {
   if (flippedImgs.length !== 2) {
     return;
   }
@@ -84,14 +84,12 @@ function toggleGameInfoBar() {
 }
 
 function changeButtonText() {
-  $startButton.textContent = isPlaying
-    ? GAME.RESTART
-    : GAME.START;
+  $startButton.textContent = isPlaying ? GAME.RESTART : GAME.START;
 }
 
 function changeBackgroundImg(gameState) {
   let imgUrl;
-  switch(gameState) {
+  switch (gameState) {
     case GAME.WIN:
       imgUrl = winImgs[0];
       sound.playWin();
@@ -123,7 +121,7 @@ function paintSquaresByImg(urls) {
     $frontSquares[j].appendChild($frontImg);
     $backSquares[j].appendChild($backImg);
 
-    $frontImg.src = '../bgs/square-bg.jpg'
+    $frontImg.src = '../bgs/square-bg.jpg';
     $backImg.src = urls[j].url;
     $frontImg.classList.add('square-img');
     $backImg.classList.add('square-img');
@@ -148,7 +146,7 @@ function removeSquares() {
 }
 
 function createSquares() {
-  for (let i =0; i < QUESTION_COUNT * 2; i++) {
+  for (let i = 0; i < QUESTION_COUNT * 2; i++) {
     const $square = document.createElement('div');
     const $frontSquare = document.createElement('div');
     const $backSquare = document.createElement('div');
@@ -187,7 +185,7 @@ function startTimer() {
   timer = setInterval(() => {
     if (seconds <= 0) {
       clearInterval(timer);
-      finishGame(GAME.LOSE)
+      finishGame(GAME.LOSE);
     } else {
       updateGameTimer(--seconds);
     }
