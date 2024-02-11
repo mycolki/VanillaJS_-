@@ -40,7 +40,8 @@ function updateAnswerCount(count) {
 }
 
 function flipImg(square) {
-  square.classList.toggle('flip img-display');
+  square.classList.toggle('flip');
+  square.classList.toggle('img-display');
 }
 
 function handleCheckAnswer() {
